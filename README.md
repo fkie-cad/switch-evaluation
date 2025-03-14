@@ -14,7 +14,7 @@ This repository contains the evaluation scripts for our paper on switch recovery
     - Ghidra (requires Java Runtime)
     - dewolf (requires Binary Ninja)
 
-3. Clone the dewolf repository inside this directory and set up the correct version including the switch recovery as mentioned in the paper.
+3. Clone the dewolf repository inside this directory and set up the correct version including the switch recovery (during review, use https://anonymous.4open.science/r/switch_recovery-788D) as mentioned in the paper.
 4. Copy Ghidra into this folder (into a folder named `ghidra`) or adjust the path in `decompilers/decompile_ghidra.py`
 
 ## Evaluation Steps
@@ -42,8 +42,6 @@ python decompilers/decompile_ida.py
 python decompilers/decompile_ghidra.py
 python decompilers/decompile_dewolf.py
 ```
-
-**
 
 ### 3. Count Switches in Decompiler Outputs
 Use the `count_switches_in_decompiler_outputs.py` script to parse all outputs and count the emitted switch constructs:
