@@ -1,0 +1,14 @@
+GitPython==3.1.44
+headless-ida==0.6.1
+kaleido
+networkx==3.4.2
+pandas
+Pebble==5.1.0
+plotly
+python-git
+setuptools
+tqdm==4.67.1
+tree-sitter-c==0.23.1
+tree-sitter-python==0.23.2
+tree-sitter==0.23.0
+typer

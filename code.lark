@@ -1,0 +1,27 @@
+%import common.WS
+%ignore WS
+
+file: function | definition file
+definition: [literal]+ ["=" value_no_semicolon] ";"
+value_no_semicolon: "\"" value+ "\"" | "\'" value+ "\'" | /[^;\"\']+/
+value: "\"" value+ "\"" | "\'" value+ "\'" | /[^\"\']+/
+function: literal+ [/\[\d+\]/]* ["*"]* literal LEFT_BRACKET params RIGHT_BRACKET block
+params: [string_with_optional_brackets_no_comma+ COMMA params | string_with_optional_brackets_no_comma+]
+literal: /[^{}()"', ;]+/?
+block: LEFT_CURLY_BRACKET block_content* RIGHT_CURLY_BRACKET
+block_content: JUMP_LABEL | goto | switch | block | /((?!switch\s*\()(?!goto\s+)[^{}])+/
+switch: "switch" LEFT_BRACKET switch_expression RIGHT_BRACKET block
+goto: "goto" literal ";"
+switch_expression: [string_with_optional_brackets]+
+string_with_optional_brackets: "(" [string_with_brackets]* ")" | string_no_brackets
+string_with_brackets: string_with_optional_brackets
+string_no_brackets: STRING_NO_BRACKETS
+string_with_optional_brackets_no_comma: "(" [string_with_optional_brackets]* ")" | STRING_NO_BRACKETS_NO_COMMA
+LEFT_BRACKET: "("
+RIGHT_BRACKET: ")"
+LEFT_CURLY_BRACKET: "{"
+RIGHT_CURLY_BRACKET: "}"
+STRING_NO_BRACKETS: /[^(){}]+/
+STRING_NO_BRACKETS_NO_COMMA: /[^(){},]+/
+COMMA: ","
+JUMP_LABEL: /[^():{};]+:/
